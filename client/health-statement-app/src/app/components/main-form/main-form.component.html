@@ -1,0 +1,14 @@
+<p>main-form works!</p>
+
+<form action="/action_page.php">
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname" /><br /><br />
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname" /><br /><br />
+  <label for="imgss">image:</label>
+  <div *ngIf="booly">
+    <app-signature-form></app-signature-form> <br /><br />
+  </div>
+
+  <input type="submit" value="Submit" />
+</form>
