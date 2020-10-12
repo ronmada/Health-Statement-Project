@@ -5,15 +5,7 @@
 </ion-header>
 
 <ion-content >
-  <form [formGroup]="form" (ngSubmit)="submitId()">
-    <ion-item>
-      <ion-label position="floating">הכנס תעודת זהות</ion-label>
-      <ion-input
-        formControlName="id"
-        type="number"
-        color="primary"
-      ></ion-input>
-    </ion-item>
-    <ion-button type="submit" color="danger" slot="end">המשך</ion-button>
-  </form>
+  <app-id-form></app-id-form>
+
+  <!-- <app-main-form></app-main-form> -->
 </ion-content>

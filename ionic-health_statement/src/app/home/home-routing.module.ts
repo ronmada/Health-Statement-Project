@@ -8,8 +8,8 @@ const routes: Routes = [
     component: HomePage,
   },
   {
-    path: ':UserId',
-    loadChildren: () => import('./form-page/form-page.module').then( m => m.FormPagePageModule)
+    path: 'mainform',
+    loadChildren: () => import('./main-form/main-form.module').then( m => m.MainFormPageModule)
   },
 ]
 
