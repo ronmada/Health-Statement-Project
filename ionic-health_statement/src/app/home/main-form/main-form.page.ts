@@ -6,16 +6,17 @@ import { Router } from '@angular/router'
   templateUrl: './main-form.page.html',
   styleUrls: ['./main-form.page.scss'],
 })
-export class MainFormPage implements OnInit {
-  haveId = true
-  constructor(private userService: UserService, private router: Router) {
-    if(!this.userService.getId()) {
-      this.haveId = false
-      this.router.navigate(['/home'])
-      }
-  }
+export class MainFormPage implements OnInit{
+  haveId =!!this.userService.getId()
 
-  ngOnInit() {
-    console.log('hello')
+  // id = this.userService.getId()
+  constructor(private userService: UserService, private router: Router) {
+    // this.haveId= !!this.userService.getId()
+    // this.haveId =!!this.userService.id
+    console.log(this.haveId)
+  }
+  ngOnInit(){
+    if (!this.haveId) this.router.navigate(['/home'])
+    console.log(this.haveId)
   }
 }

@@ -9,14 +9,16 @@ import { Router } from '@angular/router'
 })
 export class IdFormComponent {
   form = new FormGroup({
-    id: new FormControl(),
+    id: new FormControl(null),
   })
-
   constructor(private userService: UserService, private router: Router) {}
 
   submitId() {
-    console.log(this.form.get('id').value)
-    this.userService.setId(this.form.get('id').value)
-    this.router.navigate(['/home/mainform']);
+    const id = this.form.get('id').value
+    if (id !== null) {
+      this.userService.setId(id)
+      console.log(this.userService.getId())
+      this.router.navigate(['/home/mainform'])
+    }
   }
 }

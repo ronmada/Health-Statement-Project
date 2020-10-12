@@ -1,11 +1,13 @@
 <form [formGroup]="form" (ngSubmit)="submitId()">
   <ion-item>
     <ion-label position="floating">הכנס תעודת זהות</ion-label>
-    <ion-input
-      formControlName="id"
-      type="number"
-      color="primary"
-    ></ion-input>
+    <ion-input formControlName="id" type="number" color="primary"></ion-input>
   </ion-item>
-  <ion-button type="submit" color="danger" slot="end">המשך</ion-button>
+  <ion-button
+    type="submit"
+    [disabled]="!form.get('id').value"
+    color="danger"
+    slot="end"
+    >המשך</ion-button
+  >
 </form>
