@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms'
 import { IonicModule } from '@ionic/angular'
 
 import { MainFormPageRoutingModule } from './main-form-routing.module'
-import { FormStudentComponent } from '../form-student/form-student.component'
-import { FormEmployeeComponent } from '../form-employee/form-employee.component'
+import { FormStudentComponent } from './components//form-student/form-student.component'
+import { FormEmployeeComponent } from './components/form-employee/form-employee.component'
 import { MainFormPage } from './main-form.page'
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { FormEmployeeComponent } from '../home/form-employee/form-employee.component';
+import { FormEmployeeComponent } from '../home/main-form/components/form-employee/form-employee.component';
 
 describe('FormEmployeeComponent', () => {
   let component: FormEmployeeComponent;

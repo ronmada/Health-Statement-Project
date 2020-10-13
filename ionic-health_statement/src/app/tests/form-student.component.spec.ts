@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { FormStudentComponent } from '../home/form-student/form-student.component';
+import { FormStudentComponent } from '../home/main-form/components/form-employee/form-student/form-student.component';
 
 describe('FormStudentComponent', () => {
   let component: FormStudentComponent;
