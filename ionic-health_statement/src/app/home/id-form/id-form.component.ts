@@ -1,23 +1,21 @@
 import { Component, OnInit } from '@angular/core'
-import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { FormGroup, FormControl } from '@angular/forms'
 import { UserService } from '../user.service'
 import { Router } from '@angular/router'
-import { Observable } from 'rxjs'
-import { FormsModule } from '@angular/forms'
 @Component({
   selector: 'app-id-form',
   templateUrl: './id-form.component.html',
   styleUrls: ['./id-form.component.scss'],
 })
 export class IdFormComponent implements OnInit {
-  idType: string
-  id__: string = null
+  vali = {
+    minlength: 5,
+    maxlength: 7,
+    pattern: /[^0-9]+/,
+  }
+  submitButtonDisabled = true
   form = new FormGroup({
-    id: new FormControl('', [
-      Validators.minLength(5),
-      Validators.maxLength(10),
-      Validators.required,
-    ]),
+    id: new FormControl(null),
   })
   get id(): string {
     if (this.form.get('id').value === null) return ''
@@ -25,21 +23,29 @@ export class IdFormComponent implements OnInit {
   }
   constructor(private userService: UserService, private router: Router) {}
 
-  submitId() {
-    console.log(this.id)
-    const id = this.form.get('id').value
-    if (id !== null) {
-      this.userService.setId(id)
-      const idType = this.userService.getIdType()
-      this.router.navigate([`/home/${idType}`])
-    }
-  }
   ngOnInit() {
     this.listenToId()
   }
+  
+  submitId() {
+    if (this.id !== null) {
+      this.userService.setId(this.id)
+      this.router.navigate([`/home/mainform`])
+    } else this.router.navigate([`/home`])
+  }
+
   listenToId() {
-    this.form.get('id').valueChanges.subscribe((id_) => {
-      console.log(this.id.length)
+    this.form.get('id').valueChanges.subscribe(() => {
+      const l = this.id
+      let letterFound: boolean
+      l.split(',').forEach((v) => {
+        letterFound = !!v.match(this.vali.pattern)
+      })
+      this.submitButtonDisabled = !(
+        l.length >= this.vali.minlength &&
+        l.length <= this.vali.maxlength &&
+        !letterFound
+      )
     })
   }
 }

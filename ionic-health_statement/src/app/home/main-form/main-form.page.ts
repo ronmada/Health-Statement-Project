@@ -15,13 +15,20 @@ export class MainFormPage implements OnInit {
   }
 
   ngOnInit() {
-    if (this.haveId) {
-      this.getIdType()
-    } else this.router.navigate(['/home'])
+    if (!this.haveId) this.navigateBack()
+    else {
+      const idType = this.userService.getIdType()
+      if (idType !== 'formStudent' && idType !== 'formEmployee')
+        this.navigateBack()
+      else {
+        this.idType = idType
+      }
+    }
   }
-
+  async navigateBack() {
+    await this.router.navigate(['/home'])
+  }
   getIdType() {
     console.log('hello')
-    
   }
 }

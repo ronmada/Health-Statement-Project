@@ -11,6 +11,11 @@
   </ion-header>
 
   <ion-content>
-    <h1>asdfgasdfasfadf</h1>
+    <ng-container *ngIf="idType==='formStudent'">
+      <app-form-student></app-form-student>
+    </ng-container>
+    <ng-container *ngIf="idType==='formEmployee'">
+      <app-form-employee></app-form-employee>
+    </ng-container>
   </ion-content>
 </ng-container>
