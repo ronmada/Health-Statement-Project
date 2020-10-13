@@ -11,6 +11,15 @@ const routes: Routes = [
     path: 'mainform',
     loadChildren: () => import('./main-form/main-form.module').then( m => m.MainFormPageModule)
   },
+  {
+    path: 'formStudent',
+    loadChildren: () => import('./form-student/form-student.module').then( m => m.FormStudentPageModule)
+  },
+  {
+    path: 'formEmployee',
+    loadChildren: () => import('./form-employee/form-employee.module').then( m => m.FormEmployeePageModule)
+  },
+ 
 ]
 
 @NgModule({

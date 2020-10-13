@@ -1,13 +1,27 @@
 <form [formGroup]="form" (ngSubmit)="submitId()">
-  <ion-item>
-    <ion-label position="floating">הכנס תעודת זהות</ion-label>
-    <ion-input formControlName="id" type="number" color="primary"></ion-input>
-  </ion-item>
-  <ion-button
-    type="submit"
-    [disabled]="!form.get('id').value"
-    color="danger"
-    slot="end"
-    >המשך</ion-button
-  >
+  <ion-grid>
+    <ion-row>
+      <ion-col size="7" sizeMd="6" pullMd="3">
+        <ion-item>
+          <ion-label class="labl">ת.ז</ion-label>
+          <ion-input
+          required="!form.get('id').value"
+            formControlName="id"
+            type="number"
+            color="primary"
+          >
+          </ion-input>
+          <ion-button
+            class="flex-class"
+            type="submit"
+            shape="round"
+            [disabled]="!form.get('id').value"
+            slot="end"
+          >
+            <ion-icon slot="icon-only" name="star"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </form>

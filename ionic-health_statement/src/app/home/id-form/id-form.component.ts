@@ -8,6 +8,7 @@ import { Router } from '@angular/router'
   styleUrls: ['./id-form.component.scss'],
 })
 export class IdFormComponent {
+  idType: string
   form = new FormGroup({
     id: new FormControl(null),
   })
@@ -17,8 +18,8 @@ export class IdFormComponent {
     const id = this.form.get('id').value
     if (id !== null) {
       this.userService.setId(id)
-      console.log(this.userService.getId())
-      this.router.navigate(['/home/mainform'])
+      const idType = this.userService.getIdType()
+      this.router.navigate([`/home/${idType}`])
     }
   }
 }

@@ -1,15 +1,21 @@
 import { Injectable } from '@angular/core'
-
+import { BehaviorSubject } from 'rxjs'
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  id: string = null
+  private idSource = new BehaviorSubject<string>(null)
+  id = this.idSource.asObservable()
+  private idType: string = 'formStudent'
 
   setId(id: string): void {
-    this.id = id
+    this.idSource.next(id)
   }
-  getId(): string {
-    return this.id
+
+  setIdType(): void {
+    this.idType = 'formStudent'
+  }
+  getIdType(){
+    return this.idType
   }
 }
