@@ -25,3 +25,32 @@
     </ion-row>
   </ion-grid>
 </form>
+<!-- <form (ngSubmit)="submitId()">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="7" sizeMd="6" pullMd="3">
+        <ion-item>
+          <ion-label class="labl">ת.ז</ion-label>
+          <ion-input
+            required="!!id"
+            [(ngModel)]="id__"
+            name="id__"
+            type="number"
+            color="primary"
+          >
+          </ion-input>
+          <ion-button
+            class="flex-class"
+            type="submit"
+            shape="round"
+            [disabled]="!(id && id__.length >=0 && id__.length <=5)  "
+            slot="end"
+          >
+            <ion-icon slot="icon-only" name="star"></ion-icon>
+          </ion-button>
+        </ion-item>
+       <ng-container *ngIf="id">{{id__.length}}</ng-container> 
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</form> -->
