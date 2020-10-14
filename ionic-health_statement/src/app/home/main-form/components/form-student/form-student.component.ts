@@ -6,9 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-student.component.scss'],
 })
 export class FormStudentComponent implements OnInit {
+  constructor() {
+    //
+  }
 
-  constructor() { }
-
-  ngOnInit() {}
-
+  ngOnInit() :void{
+    //
+  }
 }

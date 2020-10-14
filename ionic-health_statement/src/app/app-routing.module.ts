@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core'
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router'
-import { CanLoadMainFormService } from './home/main-form/can-load-main-form.service'
+import { NgModule } from '@angular/core';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { CanLoadMainFormService } from './home/main-form/can-load-main-form.service';
 const routes: Routes = [
   {
     path: '',
@@ -30,7 +30,7 @@ const routes: Routes = [
   //   path: 'form-student',
   //   loadChildren: () => import('./form-student/form-student.module').then( m => m.FormStudentPageModule)
   // },
-]
+];
 
 @NgModule({
   imports: [

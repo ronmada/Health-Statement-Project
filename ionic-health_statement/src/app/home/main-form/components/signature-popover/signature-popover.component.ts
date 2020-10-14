@@ -1,7 +1,7 @@
-import { Component } from '@angular/core'
-import { PopoverController } from '@ionic/angular'
-import { SignatureComponent } from '../signature/signature.component'
-import { SignatureService } from '../../signature.service'
+import { Component } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
+import { SignatureComponent } from '../signature/signature.component';
+import { SignatureService } from '../../signature.service';
 
 @Component({
   selector: 'app-signature-popover',
@@ -25,13 +25,13 @@ export class SignaturePopoverComponent {
         width: 250,
         height: 204,
       },
-    })
+    });
     popover.onDidDismiss().then((res) => {
       if (res.data !== undefined) {
-        this.signatureService.saveSignature(res.data)
+        this.signatureService.saveSignature(res.data);
         // this.form.get('signature').setValue(res.data)
       }
-    })
-    return await popover.present()
+    });
+    return await popover.present();
   }
 }

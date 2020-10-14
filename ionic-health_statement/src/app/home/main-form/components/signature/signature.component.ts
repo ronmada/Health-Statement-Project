@@ -4,65 +4,65 @@ import {
   ElementRef,
   AfterViewInit,
   ViewChild,
-} from '@angular/core'
-import { fromEvent } from 'rxjs'
-import { switchMap, takeUntil, pairwise } from 'rxjs/operators'
-import { SignatureService } from '../../signature.service'
-import { PopoverController } from '@ionic/angular'
+} from '@angular/core';
+import { fromEvent } from 'rxjs';
+import { switchMap, takeUntil, pairwise } from 'rxjs/operators';
+import { SignatureService } from '../../signature.service';
+import { PopoverController } from '@ionic/angular';
 @Component({
   selector: 'app-signature',
   templateUrl: './signature.component.html',
   styleUrls: ['./signature.component.scss'],
 })
 export class SignatureComponent implements AfterViewInit {
-  @ViewChild('canvas') public canvas: ElementRef
-  @Input() width: number
-  @Input() height: number
-  private cx: CanvasRenderingContext2D
-  public checkFlag = false
+  @ViewChild('canvas') public canvas: ElementRef;
+  @Input() width: number;
+  @Input() height: number;
+  private cx: CanvasRenderingContext2D;
+  public checkFlag = false;
   constructor(
     private signatureService: SignatureService,
     private popoverController: PopoverController
   ) {}
 
-  public ngAfterViewInit() {
-    const canvasEl: HTMLCanvasElement = this.canvas.nativeElement
-    this.cx = canvasEl.getContext('2d')
-    canvasEl.width = this.width
-    canvasEl.height = this.height
+  public ngAfterViewInit() :void{
+    const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
+    this.cx = canvasEl.getContext('2d');
+    canvasEl.width = this.width;
+    canvasEl.height = this.height;
     setTimeout(() => {
-      this.drawSavedSignatureOnCanvas()
-    })
-    this.cx.lineWidth = 2
-    this.cx.lineCap = 'round'
+      this.drawSavedSignatureOnCanvas();
+    });
+    this.cx.lineWidth = 2;
+    this.cx.lineCap = 'round';
 
-    this.captureEvents(canvasEl)
+    this.captureEvents(canvasEl);
   }
   saveSig(): void {
-    const canvasImg = this.canvas.nativeElement.toDataURL('image/png', 1.0)
-    this.popoverController.dismiss(canvasImg)
+    const canvasImg = this.canvas.nativeElement.toDataURL('image/png', 1.0);
+    this.popoverController.dismiss(canvasImg);
   }
   clearSig(): void {
-    this.checkFlag = false
-    this.signatureService.clearSig()
+    this.checkFlag = false;
+    this.signatureService.clearSig();
     this.cx.clearRect(
       0,
       0,
       this.canvas.nativeElement.width,
       this.canvas.nativeElement.height
-    )
+    );
   }
 
   drawSavedSignatureOnCanvas(): void {
-    const imageSrc = this.signatureService.getSignature()
+    const imageSrc = this.signatureService.getSignature();
     if (imageSrc !== null) {
-      this.checkFlag = true
-      const ctx = this.cx
-      const image = new Image()
-      image.src = imageSrc
+      this.checkFlag = true;
+      const ctx = this.cx;
+      const image = new Image();
+      image.src = imageSrc;
       image.onload = () => {
-        ctx.drawImage(image, 0, 0)
-      }
+        ctx.drawImage(image, 0, 0);
+      };
     }
   }
 
@@ -70,7 +70,7 @@ export class SignatureComponent implements AfterViewInit {
     // this will capture all mousedown events from the canvas element
     fromEvent(canvasEl, 'mousedown')
       .pipe(
-        switchMap((e) => {
+        switchMap(() => {
           // after a mouse down, we'll record all mouse moves
           return fromEvent(canvasEl, 'mousemove').pipe(
             // we'll stop (and unsubscribe) once the user releases the mouse
@@ -81,30 +81,30 @@ export class SignatureComponent implements AfterViewInit {
             // pairwise lets us get the previous value to draw a line from
             // the previous point to the current point
             pairwise()
-          )
+          );
         })
       )
       .subscribe((res: [MouseEvent, MouseEvent]) => {
-        const rect = canvasEl.getBoundingClientRect()
+        const rect = canvasEl.getBoundingClientRect();
 
         // previous and current position with the offset
         const prevPos = {
           x: res[0].clientX - rect.left,
           y: res[0].clientY - rect.top,
-        }
+        };
 
         const currentPos = {
           x: res[1].clientX - rect.left,
           y: res[1].clientY - rect.top,
-        }
+        };
 
-        this.drawOnCanvas(prevPos, currentPos)
-      })
+        this.drawOnCanvas(prevPos, currentPos);
+      });
 
-    //handle TOUCH EVENTS
+    // handle TOUCH EVENTS
     fromEvent(canvasEl, 'touchstart')
       .pipe(
-        switchMap((e) => {
+        switchMap(() => {
           // after a touch start, we'll record all touch moves
           return fromEvent(canvasEl, 'touchmove').pipe(
             // we'll stop (and unsubscribe) once the user ends touching the scren
@@ -115,25 +115,25 @@ export class SignatureComponent implements AfterViewInit {
             // pairwise lets us get the previous value to draw a line from
             // the previous point to the current point
             pairwise()
-          )
+          );
         })
       )
       .subscribe((res: [TouchEvent, TouchEvent]) => {
-        const rect = canvasEl.getBoundingClientRect()
+        const rect = canvasEl.getBoundingClientRect();
 
         // previous and current position with the offset
         const prevPos = {
           x: res[0].targetTouches[0].clientX - rect.left,
           y: res[0].targetTouches[0].clientY - rect.top,
-        }
+        };
 
         const currentPos = {
           x: res[1].targetTouches[0].clientX - rect.left,
           y: res[1].targetTouches[0].clientY - rect.top,
-        }
+        };
 
-        this.drawOnCanvas(prevPos, currentPos)
-      })
+        this.drawOnCanvas(prevPos, currentPos);
+      });
   }
 
   private drawOnCanvas(
@@ -141,16 +141,16 @@ export class SignatureComponent implements AfterViewInit {
     currentPos: { x: number; y: number }
   ) {
     if (!this.cx) {
-      return
+      return;
     }
 
-    this.cx.beginPath()
+    this.cx.beginPath();
 
     if (prevPos) {
-      this.cx.moveTo(prevPos.x, prevPos.y) // from
-      this.cx.lineTo(currentPos.x, currentPos.y)
-      this.cx.stroke()
+      this.cx.moveTo(prevPos.x, prevPos.y); // from
+      this.cx.lineTo(currentPos.x, currentPos.y);
+      this.cx.stroke();
     }
-    this.checkFlag = true
+    this.checkFlag = true;
   }
 }

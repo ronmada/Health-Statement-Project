@@ -1,2 +1,3 @@
-export interface Employee {
-}
+// export interface Employee {
+
+// }

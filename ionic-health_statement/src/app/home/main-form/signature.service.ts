@@ -1,20 +1,20 @@
-import { Injectable } from '@angular/core'
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SignatureService {
-  private signature: string = null
+  private signature: string = null;
 
   saveSignature(canvasImg: string): void {
-    this.signature = canvasImg
+    this.signature = canvasImg;
   }
 
   getSignature(): string {
-    return this.signature
+    return this.signature;
   }
-  
+
   clearSig(): void {
-    this.signature = null
+    this.signature = null;
   }
 }

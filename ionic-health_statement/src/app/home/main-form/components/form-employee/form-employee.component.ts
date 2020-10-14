@@ -6,9 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-employee.component.scss'],
 })
 export class FormEmployeeComponent implements OnInit {
+  constructor() {
+    //
+  }
 
-  constructor() { }
-
-  ngOnInit() {}
-
+  ngOnInit(): void {
+    //
+  }
 }

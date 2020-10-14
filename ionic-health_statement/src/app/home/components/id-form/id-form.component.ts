@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core'
-import { FormGroup, FormControl } from '@angular/forms'
-import { UserService } from '../../user.service'
-import { Router } from '@angular/router'
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { UserService } from '../../user.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-id-form',
   templateUrl: './id-form.component.html',
@@ -12,40 +12,44 @@ export class IdFormComponent implements OnInit {
     minlength: 8,
     maxlength: 10,
     pattern: /[^0-9]+/,
-  }
-  submitButtonDisabled = true
+  };
+  submitButtonDisabled = true;
   form = new FormGroup({
     id: new FormControl(null),
-  })
+  });
   get id(): string {
-    if (this.form.get('id').value === null) return ''
-    return String(this.form.get('id').value)
+    if (this.form.get('id').value === null) {
+      return '';
+    }
+    return String(this.form.get('id').value);
   }
   constructor(private userService: UserService, private router: Router) {}
 
-  ngOnInit() {
-    this.listenToId()
+  ngOnInit(): void {
+    this.listenToId();
   }
 
-  submitId() {
+  submitId(): void {
     if (this.id !== null) {
-      this.userService.setId(this.id)
-      this.router.navigate([`/home/mainform`])
-    } else this.router.navigate([`/home`])
+      this.userService.setId(this.id);
+      this.router.navigate([`/home/mainform`]);
+    } else {
+      this.router.navigate([`/home`]);
+    }
   }
 
-  listenToId() {
+  listenToId(): void {
     this.form.get('id').valueChanges.subscribe(() => {
-      const l = this.id
-      let letterFound: boolean
+      const l = this.id;
+      let letterFound: boolean;
       l.split(',').forEach((v) => {
-        letterFound = !!v.match(this.vali.pattern)
-      })
+        letterFound = !!v.match(this.vali.pattern);
+      });
       this.submitButtonDisabled = !(
         l.length >= this.vali.minlength &&
         l.length <= this.vali.maxlength &&
         !letterFound
-      )
-    })
+      );
+    });
   }
 }
