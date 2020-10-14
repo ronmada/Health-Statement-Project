@@ -9,7 +9,7 @@ const formSchema = new mongoose.Schema({
   guardianId: String,
   guardianName: String,
   formDate: Date,
-  formSignature: Boolean,
+  formSignature: String,
 });
 
 module.exports = mongoose.model('Form', formSchema);

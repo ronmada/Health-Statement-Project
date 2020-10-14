@@ -1,0 +1,9 @@
+GET http://localhost:5000/userlookup?id=6543645654
+
+###
+GET http://localhost:5000/userlookup?id=7246568
+###
+
+GET http://localhost:5000/userlookup?id=1572981
+
+###

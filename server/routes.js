@@ -1,10 +1,10 @@
 const app = require('./app');
+const formRouter = require('./routes/formCreator');
+const userRouter = require('./routes/userLookUp');
 
 const getRoutes = () => {
-  const formRouter = require('./routes/formCreator');
-  //   const locationsRouter = require('./routes/locations')
   app.app.use('/formCreator', formRouter);
-  //   app.app.use('/locations', locationsRouter)
+  app.app.use('/userLookUp', userRouter);
   console.log('Routes init successfully');
 };
 
