@@ -4,6 +4,7 @@
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
+    "gh-pages": "ng build --base-href ./ --prod && npx ngh --dir=www/",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",

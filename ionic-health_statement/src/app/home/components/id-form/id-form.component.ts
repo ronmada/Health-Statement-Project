@@ -9,8 +9,8 @@ import { Router } from '@angular/router'
 })
 export class IdFormComponent implements OnInit {
   vali = {
-    minlength: 5,
-    maxlength: 7,
+    minlength: 8,
+    maxlength: 10,
     pattern: /[^0-9]+/,
   }
   submitButtonDisabled = true
@@ -26,7 +26,7 @@ export class IdFormComponent implements OnInit {
   ngOnInit() {
     this.listenToId()
   }
-  
+
   submitId() {
     if (this.id !== null) {
       this.userService.setId(this.id)

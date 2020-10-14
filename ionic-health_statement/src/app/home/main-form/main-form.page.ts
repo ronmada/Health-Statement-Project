@@ -7,28 +7,13 @@ import { Router } from '@angular/router'
   styleUrls: ['./main-form.page.scss'],
 })
 export class MainFormPage implements OnInit {
-  haveId: boolean
-  //idType = 'Employee' || 'Student'
-  idType: string = null
-  constructor(private userService: UserService, private router: Router) {
-    this.userService.id.subscribe((idValue) => (this.haveId = !!idValue))
-  }
+  idType: string = null //'Employee' || 'Student'
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit() {
-    if (!this.haveId) this.navigateBack()
-    else {
-      const idType = this.userService.getIdType()
-      if (idType !== 'formStudent' && idType !== 'formEmployee')
-        this.navigateBack()
-      else {
-        this.idType = idType
-      }
-    }
-  }
-  async navigateBack() {
-    await this.router.navigate(['/home'])
-  }
-  getIdType() {
-    console.log('hello')
+    const idType = this.userService.getIdType()
+    if (idType !== 'formStudent' && idType !== 'formEmployee')
+      this.router.navigate(['/home'])
+    else this.idType = idType
   }
 }

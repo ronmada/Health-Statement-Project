@@ -15,10 +15,6 @@ import { IdFormComponent } from './components/id-form/id-form.component'
     HomePageRoutingModule,
     ReactiveFormsModule,
   ],
-  declarations: [
-    HomePage,
-    IdFormComponent,
-   
-  ],
+  declarations: [HomePage, IdFormComponent],
 })
 export class HomePageModule {}
