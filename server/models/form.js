@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const formSchema = new mongoose.Schema({
   formType: String,
@@ -10,6 +10,6 @@ const formSchema = new mongoose.Schema({
   guardianName: String,
   formDate: Date,
   formSignature: Boolean,
-})
+});
 
-module.exports = mongoose.model('Form', formSchema)
+module.exports = mongoose.model('Form', formSchema);
