@@ -9,13 +9,13 @@ import { Router } from '@angular/router';
 })
 export class IdFormComponent implements OnInit {
   vali = {
-    minlength: 8,
-    maxlength: 10,
+    minlength: 7,
+    maxlength: 7,
     pattern: /[^0-9]+/,
   };
-  submitButtonDisabled = true;
+  submitButtonDisabled = false;
   form = new FormGroup({
-    id: new FormControl(null),
+    id: new FormControl(2688373),
   });
   get id(): string {
     if (this.form.get('id').value === null) {
@@ -32,6 +32,7 @@ export class IdFormComponent implements OnInit {
   submitId(): void {
     if (this.id !== null) {
       this.userService.setId(this.id);
+      console.log('111');
       this.router.navigate([`/home/mainform`]);
     } else {
       this.router.navigate([`/home`]);

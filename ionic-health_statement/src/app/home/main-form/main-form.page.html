@@ -1,19 +1,17 @@
-  <ion-header>
-    <ion-toolbar color="primary">
-      <ion-buttons slot="start">
-        <ion-back-button
-          icon="arrow-forward"
-          defaultHref="/home"
-        ></ion-back-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+        icon="arrow-forward"
+        defaultHref="/home"
+      ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
-  <ion-content>
-    <ng-container *ngIf="idType==='formStudent'">
-      <app-form-student></app-form-student>
-    </ng-container>
-    <ng-container *ngIf="idType==='formEmployee'">
-      <app-form-employee></app-form-employee>
-    </ng-container>
-  </ion-content>
+<ion-content>
+  <ng-container *ngIf="user$ | async as user">
+    <app-form-student *ngIf="user.userType==='Student'"></app-form-student>
+    <app-form-employee *ngIf="user.userType==='Employee'"></app-form-employee>
+  </ng-container>
+</ion-content>
