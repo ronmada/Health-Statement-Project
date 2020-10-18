@@ -1,17 +1,16 @@
 const mongoose = require('mongoose');
 
 const employeeSchema = new mongoose.Schema({
-  employee: {
-    id: String,
-    firstName: String,
-    lastName: String,
-    gender: String,
-    phoneNum: String,
-  },
-  institutes: [
+  userType: String,
+  id: String,
+  firstName: String,
+  lastName: String,
+  gender: String,
+  phoneNum: String,
+  institute: [
     {
-      instituteName: String,
-      instituteId: Number,
+      id: Number,
+      name: String,
     },
   ],
 });

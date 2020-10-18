@@ -2,15 +2,19 @@ const Employee = require('../models/employee');
 const Student = require('../models/student');
 
 const studentLookUp = async (id) => {
-  return await Student.find({ 'student.id': id }, '-_id -__v').exec();
+  return await Student.findOne({ id: id }, '-_id -__v').exec();
 };
 
 const employeeLookUp = async (id) => {
-  return await Employee.find({ 'employee.id': id }, '-_id -__v').exec();
+  return await Employee.findOne({ id: id }, '-_id -__v').exec();
 };
-
+const isEmpty = (obj) => {
+  for (const x in obj) return false;
+  return true;
+};
 exports.userLookUp = async (req, res, next) => {
   const id = req.query.id;
+  console.log('heellloo', id);
   if (isNaN(id)) {
     res
       .status(404)
@@ -18,16 +22,19 @@ exports.userLookUp = async (req, res, next) => {
     return next();
   }
   try {
-    let resultArray = await studentLookUp(id);
-    if (resultArray.length !== 0) {
-      res.data = resultArray;
+    let resultObject = await studentLookUp(id);
+    if (!isEmpty(resultObject)) {
+      console.log('found student');
+      res.data = resultObject;
       return next();
     }
-    resultArray = await employeeLookUp(id);
-    if (resultArray.length !== 0) {
-      res.data = resultArray;
+    resultObject = await employeeLookUp(id);
+    if (!isEmpty(resultObject)) {
+      console.log('found employee');
+      res.data = resultObject;
       return next();
     }
+    console.log(`didn't find anything`);
     return res.status(404).json({ message: 'Not found user with this ID' });
   } catch (err) {
     return res.status(500).json({ message: err.message });

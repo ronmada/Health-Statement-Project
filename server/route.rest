@@ -1,9 +1,10 @@
 GET http://localhost:5000/userlookup?id=6543645654
 
-###
-GET http://localhost:5000/userlookup?id=7246568
-###
+###  Student
+GET http://localhost:5000/userlookup?id=2688373
 
-GET http://localhost:5000/userlookup?id=1572981
+### Employee
+GET http://localhost:5000/userlookup?id=4749890
 
 ###
+sda
