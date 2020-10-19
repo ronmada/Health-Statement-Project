@@ -9,7 +9,7 @@ import { MainFormPageRoutingModule } from './main-form-routing.module';
 import { FormStudentComponent } from './components//form-student/form-student.component';
 import { FormEmployeeComponent } from './components/form-employee/form-employee.component';
 import { MainFormPage } from './main-form.page';
-import { SignaturePopoverComponent } from './components/signature-popover/signature-popover.component';
+import { SigPopComponent } from './components/sig-pop/sig-pop.component';
 import { SignatureComponent } from './components/signature/signature.component';
 @NgModule({
   imports: [
@@ -23,7 +23,7 @@ import { SignatureComponent } from './components/signature/signature.component';
     MainFormPage,
     FormStudentComponent,
     FormEmployeeComponent,
-    SignaturePopoverComponent,
+    SigPopComponent,
     SignatureComponent,
   ],
 })

@@ -4,11 +4,11 @@ import { SignatureComponent } from '../signature/signature.component';
 import { SignatureService } from '../../signature.service';
 
 @Component({
-  selector: 'app-signature-popover',
-  templateUrl: './signature-popover.component.html',
-  styleUrls: ['./signature-popover.component.scss'],
+  selector: 'app-sig-pop',
+  templateUrl: './sig-pop.component.html',
+  styleUrls: ['./sig-pop.component.scss'],
 })
-export class SignaturePopoverComponent {
+export class SigPopComponent {
   public buttonColor: string;
   constructor(
     private signatureService: SignatureService,
