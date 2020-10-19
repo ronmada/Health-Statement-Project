@@ -14,7 +14,6 @@ const isEmpty = (obj) => {
 };
 exports.userLookUp = async (req, res, next) => {
   const id = req.query.id;
-  console.log('heellloo', id);
   if (isNaN(id)) {
     res
       .status(404)
@@ -35,7 +34,10 @@ exports.userLookUp = async (req, res, next) => {
       return next();
     }
     console.log(`didn't find anything`);
-    return res.status(404).json({ message: 'Not found user with this ID' });
+    // return res
+    //   .status(200)
+    //   .json({ error: `Not found user with this ID: ${id}` });
+    next()
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
