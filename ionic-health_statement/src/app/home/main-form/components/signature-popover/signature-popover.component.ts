@@ -9,10 +9,13 @@ import { SignatureService } from '../../signature.service';
   styleUrls: ['./signature-popover.component.scss'],
 })
 export class SignaturePopoverComponent {
+  public buttonColor: string;
   constructor(
     private signatureService: SignatureService,
     private popoverController: PopoverController
-  ) {}
+  ) {
+    this.buttonColor = 'warning';
+  }
 
   public async presentPopover(ev: Event): Promise<void> {
     const popover = await this.popoverController.create({
@@ -28,6 +31,7 @@ export class SignaturePopoverComponent {
     });
     popover.onDidDismiss().then((res) => {
       if (res.data !== undefined) {
+        this.buttonColor = 'success';
         this.signatureService.saveSignature(res.data);
         // this.form.get('signature').setValue(res.data)
       }

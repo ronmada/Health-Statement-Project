@@ -1,4 +1,66 @@
-<p>
-  form-student works!
-</p>
-<app-signature-popover></app-signature-popover>
+<form [formGroup]="form" (ngSubmit)="submitStudentForm()">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>ת.ז:</ion-label>
+          <ion-input disabled></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>שם:</ion-label>
+          <ion-input disabled></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        אני מצהיר כדלהלן:
+        <ion-row
+          >-מדדתי חום לילדי/ילדתי, ונמצא כי חום גופו/ה מתחת ל- 38 מעלות צלזיוס.
+        </ion-row>
+        <ion-row>-ילדי / ילדתי לא משתעל ואין לו קשיים בנשימה*</ion-row>
+        <ion-row>
+          -למיטב ידיעתי ילדי לא היה במגע קרוב עם חולהקורונה בשבועיים האחרונים.
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>שם האחראי/הורה:</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>ת.ז:</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>תאריך:</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-signature-popover></app-signature-popover>
+      </ion-col>
+      <ion-col>
+        <ion-button type="submit">שלח</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-col>
+      <ion-row>
+        *למעט שיעול או קושי בנשימה הנובע ממצב כרוני כגון אסטמה או אלרגיה אחרת.
+      </ion-row>
+    </ion-col>
+  </ion-grid>
+</form>

@@ -35,7 +35,8 @@ export class SignatureComponent implements AfterViewInit {
     });
     this.cx.lineWidth = 2;
     this.cx.lineCap = 'round';
-
+    this.cx.strokeStyle = 'black';
+    // this.cx.strokeStyle = 'blue';
     this.captureEvents(canvasEl);
   }
   public saveSig(): void {
