@@ -11,10 +11,10 @@ import { SignatureService } from '../../signature.service';
 export class SignaturePopoverComponent {
   constructor(
     private signatureService: SignatureService,
-    public popoverController: PopoverController
+    private popoverController: PopoverController
   ) {}
 
-  async presentPopover(ev: any) {
+  public async presentPopover(ev: Event): Promise<void> {
     const popover = await this.popoverController.create({
       component: SignatureComponent,
       cssClass: 'my-custom-class',

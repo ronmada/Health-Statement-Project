@@ -6,15 +6,15 @@ import { Injectable } from '@angular/core';
 export class SignatureService {
   private signature: string = null;
 
-  saveSignature(canvasImg: string): void {
+  public saveSignature(canvasImg: string): void {
     this.signature = canvasImg;
   }
 
-  getSignature(): string {
+  public getSignature(): string {
     return this.signature;
   }
 
-  clearSig(): void {
+  public clearSig(): void {
     this.signature = null;
   }
 }

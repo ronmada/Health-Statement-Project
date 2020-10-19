@@ -10,8 +10,6 @@
 </ion-header>
 
 <ion-content>
-  <ng-container *ngIf="user$ | async as user">
-    <app-form-student *ngIf="user.userType==='Student'"></app-form-student>
-    <app-form-employee *ngIf="user.userType==='Employee'"></app-form-employee>
-  </ng-container>
+  <app-form-student *ngIf="student"></app-form-student>
+  <app-form-employee *ngIf="employee"></app-form-employee>
 </ion-content>

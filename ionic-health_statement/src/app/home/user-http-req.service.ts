@@ -12,11 +12,9 @@ export class UserHttpReqService {
 
   constructor(private http: HttpClient) {}
 
-  getIdType(id: string): Observable<Employee | Student> {
+  public searchUserHTTP(id: string): Observable<Employee | Student> {
     // id = '2688373';
-
     const params = new HttpParams().set('id', id);
-    console.log('ON SERVICE GET ID TYPE');
     return this.http.get<Employee | Student>(`${this.URL}/userLookUp`, {
       params: params,
     });

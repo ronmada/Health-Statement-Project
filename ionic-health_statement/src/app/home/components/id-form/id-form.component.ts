@@ -8,15 +8,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./id-form.component.scss'],
 })
 export class IdFormComponent implements OnInit {
-  vali = {
+  public errorMsg = { msg: 'לא נמצא', show: false };
+  public vali = {
     minlength: 7,
     maxlength: 7,
     pattern: /[^0-9]+/,
   };
-  submitButtonDisabled = false;
-  form = new FormGroup({
+  public submitButtonDisabled = false;
+  public form = new FormGroup({
     id: new FormControl(2688373),
   });
+
   get id(): string {
     if (this.form.get('id').value === null) {
       return '';
@@ -29,17 +31,19 @@ export class IdFormComponent implements OnInit {
     this.listenToId();
   }
 
-  submitId(): void {
-    if (this.id !== null) {
-      this.userService.setId(this.id);
-      console.log('111');
-      this.router.navigate([`/home/mainform`]);
-    } else {
-      this.router.navigate([`/home`]);
-    }
+  public submitId(): void {
+    this.userService.searchUser(this.id).subscribe((elem) => {
+      if (this.userService.isOkay) {
+        this.errorMsg.show = false;
+        this.router.navigate([`/home/mainform`]);
+        console.log(elem);
+      } else {
+        this.errorMsg.show = true;
+      }
+    });
   }
 
-  listenToId(): void {
+  private listenToId(): void {
     this.form.get('id').valueChanges.subscribe(() => {
       const l = this.id;
       let letterFound: boolean;

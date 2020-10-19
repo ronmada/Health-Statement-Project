@@ -16,8 +16,8 @@ import { PopoverController } from '@ionic/angular';
 })
 export class SignatureComponent implements AfterViewInit {
   @ViewChild('canvas') public canvas: ElementRef;
-  @Input() width: number;
-  @Input() height: number;
+  @Input() public width: number;
+  @Input() public height: number;
   private cx: CanvasRenderingContext2D;
   public checkFlag = false;
   constructor(
@@ -25,7 +25,7 @@ export class SignatureComponent implements AfterViewInit {
     private popoverController: PopoverController
   ) {}
 
-  public ngAfterViewInit() :void{
+  public ngAfterViewInit(): void {
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
     this.cx = canvasEl.getContext('2d');
     canvasEl.width = this.width;
@@ -38,11 +38,11 @@ export class SignatureComponent implements AfterViewInit {
 
     this.captureEvents(canvasEl);
   }
-  saveSig(): void {
+  public saveSig(): void {
     const canvasImg = this.canvas.nativeElement.toDataURL('image/png', 1.0);
     this.popoverController.dismiss(canvasImg);
   }
-  clearSig(): void {
+  public clearSig(): void {
     this.checkFlag = false;
     this.signatureService.clearSig();
     this.cx.clearRect(
@@ -53,7 +53,7 @@ export class SignatureComponent implements AfterViewInit {
     );
   }
 
-  drawSavedSignatureOnCanvas(): void {
+  private drawSavedSignatureOnCanvas(): void {
     const imageSrc = this.signatureService.getSignature();
     if (imageSrc !== null) {
       this.checkFlag = true;

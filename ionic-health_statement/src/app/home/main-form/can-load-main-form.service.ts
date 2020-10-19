@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 export class CanLoadMainFormService implements CanLoad {
   constructor(private userService: UserService, private router: Router) {}
 
-  canLoad(): boolean {
-    if (this.userService.getId()) { return true; }
+  public canLoad(): boolean {
+    if (this.userService.isOkay) return true;
     this.router.navigate(['../']);
     return false;
   }
