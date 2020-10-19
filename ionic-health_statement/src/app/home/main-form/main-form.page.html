@@ -11,6 +11,6 @@
 </ion-header>
 
 <ion-content>
-  <app-form-student *ngIf="student"></app-form-student>
-  <app-form-employee *ngIf="employee"></app-form-employee>
+  <app-form-student *ngIf="student" [student]="student"></app-form-student>
+  <app-form-employee *ngIf="employee" [employee]="employee"></app-form-employee>
 </ion-content>

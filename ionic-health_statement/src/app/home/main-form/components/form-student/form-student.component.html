@@ -1,16 +1,16 @@
-<form [formGroup]="form" (ngSubmit)="submitStudentForm()">
+<form [formGroup]="studentForm" (ngSubmit)="submitStudentForm()">
   <ion-grid>
     <ion-row>
       <ion-col>
         <ion-item>
           <ion-label>ת.ז:</ion-label>
-          <ion-input disabled></ion-input>
+          <ion-input formControlName="id" ></ion-input>
         </ion-item>
       </ion-col>
       <ion-col>
         <ion-item>
           <ion-label>שם:</ion-label>
-          <ion-input disabled></ion-input>
+          <ion-input formControlName="name"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>

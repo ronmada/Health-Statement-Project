@@ -25,11 +25,6 @@ const routes: Routes = [
       },
     ],
   },
-
-  // {
-  //   path: 'form-student',
-  //   loadChildren: () => import('./form-student/form-student.module').then( m => m.FormStudentPageModule)
-  // },
 ];
 
 @NgModule({
