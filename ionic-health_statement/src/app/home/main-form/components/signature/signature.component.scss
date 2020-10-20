@@ -5,3 +5,6 @@ canvas {
   display: flex;
   flex-direction: column;
 }
+ion-content {
+  --overflow: hidden;
+}

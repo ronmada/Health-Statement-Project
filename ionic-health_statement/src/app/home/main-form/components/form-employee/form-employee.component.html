@@ -1,4 +1,66 @@
-<p>
-  form-employee works!
-</p>
-<app-sig-pop></app-sig-pop>
+<form [formGroup]="employeeForm" (ngSubmit)="submitEmployeeForm()">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>ת.ז:</ion-label>
+          <ion-input formControlName="id"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>שם:</ion-label>
+          <ion-input formControlName="name"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="stacked">מקום עבודה:</ion-label>
+          <ion-select formControlName="institute" interface="popover">
+            <ion-select-option
+              *ngFor="let institute of employee.institute"
+              [value]="institute"
+              >{{ institute.name }}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        אני מצהיר כי:
+        <ion-row> 1. מדדתי חום בבוקר, ולא היה לי חום מעל 38.</ion-row>
+        <ion-row
+          >2. אין לי תסמיני קורונה (שיעול,קושי בנשימה* או כל תסמין נשימתי
+          אחר).</ion-row
+        >
+        <ion-row>
+          3. לא הייתי במגע קרוב עם חולה קורונה בשבועיים האחרונים.
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">תאריך:</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <app-sig-pop></app-sig-pop>
+      </ion-col>
+      <ion-col>
+        <ion-button type="submit">שלח</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-col>
+      <ion-row>
+        *למעט שיעול או קושי בנשימה הנובע ממצב כרוני כגון אסטמה או אלרגיה אחרת.
+      </ion-row>
+    </ion-col>
+  </ion-grid>
+</form>

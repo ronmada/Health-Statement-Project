@@ -18,6 +18,15 @@
   user-select: text;
   direction: rtl;
 }
+@media only screen and (min-width: 769px) {
+  .centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
 /* Core CSS required for Ionic components to work properly */
 @import '~@ionic/angular/css/core.css';
 

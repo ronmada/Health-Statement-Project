@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { UserService } from '../../../user.service';
 import { Student } from '../../../models/student';
+import { MainFormService } from '../../main-form.service';
 @Component({
   selector: 'app-form-student',
   templateUrl: './form-student.component.html',
@@ -13,15 +13,12 @@ export class FormStudentComponent implements OnInit {
     id: new FormControl({ value: '', disabled: true }),
     name: new FormControl({ value: '', disabled: true }),
   });
-  constructor(private userService: UserService) {}
+  constructor(private mainFormService: MainFormService) {}
 
   ngOnInit(): void {
-    this.setForm(this.studentForm, this.student);
+    this.mainFormService.initForm(this.studentForm, this.student);
   }
-  setForm(form: FormGroup, stud: Student): void {
-    form.get('id').setValue(stud.id);
-    form.get('name').setValue(`${stud.firstName} ${stud.lastName}`);
-  }
+
   submitStudentForm(): void {
     //
   }
