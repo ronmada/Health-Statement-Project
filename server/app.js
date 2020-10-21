@@ -8,17 +8,15 @@ const routes = require('./routes');
 const app = express();
 
 app.use(cors());
+app.use(express.json()); // Make sure it comes back as json
+app.use(express.urlencoded({ extended: true }));
 
 exports.app = app;
 
+app.use(timeStampFunc);
+
 mongoConnection();
 routes();
-
-app.use(express.json()); // Make sure it comes back as json
-
-app.use(express.urlencoded({ extended: false }));
-
-app.use(timeStampFunc);
 
 app.get('/', (req, res) => {
   res.status(200).send(`<h7>${req.hostname}</h7>`);
