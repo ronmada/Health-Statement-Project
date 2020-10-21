@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { SignatureComponent } from '../signature/signature.component';
 import { SignatureService } from '../../services/signature.service';
@@ -9,6 +9,7 @@ import { SignatureService } from '../../services/signature.service';
   styleUrls: ['./sig-pop.component.scss'],
 })
 export class SigPopComponent {
+  @Output() private savedSigEvent = new EventEmitter<string>();
   public buttonColor: string;
   constructor(
     private signatureService: SignatureService,
@@ -16,7 +17,9 @@ export class SigPopComponent {
   ) {
     this.buttonColor = 'warning';
   }
-
+  saveSig(value: string): void {
+    this.savedSigEvent.emit(value);
+  }
   public async presentPopover(ev: Event): Promise<void> {
     const popover = await this.popoverController.create({
       component: SignatureComponent,
@@ -32,8 +35,8 @@ export class SigPopComponent {
     popover.onDidDismiss().then((res) => {
       if (res.data !== undefined) {
         this.buttonColor = 'success';
+        this.saveSig(res.data)
         this.signatureService.saveSignature(res.data);
-        // this.form.get('signature').setValue(res.data)
       }
     });
     return await popover.present();

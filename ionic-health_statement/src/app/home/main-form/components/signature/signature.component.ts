@@ -39,7 +39,7 @@ export class SignatureComponent implements AfterViewInit {
     // this.cx.strokeStyle = 'blue';
     this.captureEvents(canvasEl);
   }
-  public saveSig(): void {
+  public saveSigAs64String(): void {
     const canvasImg = this.canvas.nativeElement.toDataURL('image/png', 1.0);
     this.popoverController.dismiss(canvasImg);
   }

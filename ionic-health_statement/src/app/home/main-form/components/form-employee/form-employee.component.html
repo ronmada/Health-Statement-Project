@@ -51,7 +51,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <app-sig-pop></app-sig-pop>
+        <app-sig-pop (savedSigEvent)="saveSig($event)"></app-sig-pop>
       </ion-col>
       <ion-col>
         <ion-button type="submit">שלח</ion-button>
