@@ -1,4 +1,4 @@
-const Healthstate = require('../models/Healthstate');
+const Healthstate = require('../models/healthState');
 
 exports.generateForm = async (req, res, next) => {
   console.log(req.body);
