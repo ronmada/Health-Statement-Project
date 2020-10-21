@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { UserHttpReqService } from './user-http-req.service';
-import { Employee } from '../models/employee';
-import { Student } from '.././models/student';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { MainFormService } from '../../home/main-form/services/main-form.service';
+import { Injectable } from "@angular/core";
+import { UserHttpReqService } from "./user-http-req.service";
+import { Employee } from "../models/employee";
+import { Student } from ".././models/student";
+import { Observable } from "rxjs";
+import { tap } from "rxjs/operators";
+import { MainFormService } from "../../home/main-form/services/main-form.service";
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class UserService {
   public isOkay = false;
@@ -22,9 +22,9 @@ export class UserService {
       tap((user) => {
         if (user === null) this.isOkay = false;
         else {
-          this.isOkay = true;
           this.user__ = user;
-          this.mainFormService.setupForm(user);
+          this.mainFormService.setupForm(this.user__);
+          this.isOkay = true;
         }
       })
     );
