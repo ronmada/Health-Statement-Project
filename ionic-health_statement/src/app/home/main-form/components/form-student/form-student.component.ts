@@ -22,7 +22,9 @@ export class FormStudentComponent implements OnInit {
   get guardian(): string {
     return this.studentForm.get("guardian").value.id;
   }
-  
+  get institute(): string {
+    return this.studentForm.get("institute").value.name;
+  }
   ngOnInit(): void {
     //
   }

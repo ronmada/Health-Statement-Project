@@ -16,6 +16,14 @@
     </ion-row>
     <ion-row>
       <ion-col>
+        <ion-item disabled>
+          <ion-label>מוסד לימודים:</ion-label>
+          <ion-input [value]="institute"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
         אני מצהיר כדלהלן:
         <ion-row
           >-מדדתי חום לילדי/ילדתי, ונמצא כי חום גופו/ה מתחת ל- 38 מעלות צלזיוס.
@@ -43,23 +51,16 @@
       <ion-col>
         <ion-item disabled>
           <ion-label position="stacked">ת.ז:</ion-label>
-          <ion-input >{{ guardian }}</ion-input>
+          <ion-input>{{ guardian }}</ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label position="stacked">תאריך:</ion-label>
-          <ion-input></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-
     <ion-row>
       <ion-col>
         <app-sig-pop (savedSigEvent)="saveSig($event)"></app-sig-pop>
       </ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col>
         <ion-button type="submit">שלח</ion-button>
       </ion-col>

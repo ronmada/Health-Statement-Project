@@ -12,21 +12,38 @@ export class MainFormService {
   constructor(private mainFormHttpReqService: MainFormHttpReqService) {}
 
   setupForm(user: Student | Employee): void {
+    // const form = new FormGroup({
+    //   formType: new FormControl(user.userType),
+    //   id: new FormControl(user.id),
+    //   name: new FormControl(`${user.firstName} ${user.lastName}`),
+    //   signature: new FormControl(),
+    //   institute: new FormControl({
+    //     id: "",
+    //     name: "",
+    //   }),
+    //   phoneNum: new FormControl(),
+    //   formDate: new FormControl(this.getFormmatedDate(new Date())),
+    //   guardian: new FormControl({
+    //     id: "",
+    //     name: "",
+    //     gender: "",
+    //   }),
+    // });
     const form = new FormGroup({
       formType: new FormControl(user.userType),
       id: new FormControl(user.id),
       name: new FormControl(`${user.firstName} ${user.lastName}`),
       signature: new FormControl(),
       institute: new FormControl({
-        id: "",
-        name: "",
+        id: '',
+        name: '',
       }),
       phoneNum: new FormControl(),
       formDate: new FormControl(this.getFormmatedDate(new Date())),
       guardian: new FormControl({
-        id: "",
-        name: "",
-        gender: "",
+        id: '',
+        name: '',
+        gender: '',
       }),
     });
     if (user.userType === "Student") {
@@ -43,7 +60,7 @@ export class MainFormService {
   setForm(form: FormGroup): void {
     this.form = form;
   }
-  
+
   public getForm(): FormGroup {
     return this.form;
   }
