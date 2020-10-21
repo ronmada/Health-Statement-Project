@@ -2,15 +2,15 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-item>
-          <ion-label>ת.ז:</ion-label>
-          <ion-input formControlName="id"></ion-input>
+        <ion-item disabled>
+          <ion-label>שם:</ion-label>
+          <ion-input formControlName="name"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col>
-        <ion-item>
-          <ion-label>שם:</ion-label>
-          <ion-input formControlName="name"></ion-input>
+        <ion-item disabled>
+          <ion-label>ת.ז:</ion-label>
+          <ion-input formControlName="id"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -41,16 +41,16 @@
         </ion-item>
       </ion-col>
       <ion-col>
-        <ion-item>
-          <ion-label position="floating">ת.ז:</ion-label>
-          <ion-input></ion-input>
+        <ion-item disabled>
+          <ion-label  position="stacked">ת.ז:</ion-label>
+          <ion-input  >{{this.studentForm.get('guardian').value.id}}</ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
         <ion-item>
-          <ion-label position="floating">תאריך:</ion-label>
+          <ion-label position="stacked">תאריך:</ion-label>
           <ion-input></ion-input>
         </ion-item>
       </ion-col>

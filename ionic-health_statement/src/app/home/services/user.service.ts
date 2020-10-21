@@ -4,14 +4,18 @@ import { Employee } from '../models/employee';
 import { Student } from '.././models/student';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { MainFormService } from '../../home/main-form/services/main-form.service';
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private userHttpReqService: UserHttpReqService) {}
   public isOkay = false;
-  public employee: Employee;
-  public student: Student;
+  public user__: Student | Employee;
+
+  constructor(
+    private userHttpReqService: UserHttpReqService,
+    private mainFormService: MainFormService
+  ) {}
 
   public searchUser(id: string): Observable<Employee | Student> {
     return this.userHttpReqService.searchUserHTTP(id).pipe(
@@ -19,13 +23,8 @@ export class UserService {
         if (user === null) this.isOkay = false;
         else {
           this.isOkay = true;
-          if (user.userType === 'Employee') {
-            this.employee = user as Employee;
-            this.student = null;
-          } else if (user.userType === 'Student') {
-            this.student = user as Student;
-            this.employee = null;
-          }
+          this.user__ = user;
+          this.mainFormService.setupForm(user);
         }
       })
     );

@@ -2,48 +2,82 @@ import { Injectable } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Student } from '../../models/student';
 import { Employee } from '../../models/employee';
-import { SignatureService } from './signature.service';
+import { MainFormHttpReqService } from './main-form-http-req.service';
 @Injectable({
   providedIn: 'root',
 })
 export class MainFormService {
   public form = new FormGroup({
     formType: new FormControl(),
-    id: new FormControl({ value: '', disabled: true }),
-    name: new FormControl({ value: '', disabled: true }),
+    id: new FormControl(),
+    name: new FormControl(),
     signature: new FormControl(),
     institute: new FormControl({
-      id: new FormControl(),
-      name: new FormControl(),
+      id: '',
+      name: '',
     }),
     phoneNum: new FormControl(),
     formDate: new FormControl(),
     guardian: new FormControl({
-      id: new FormControl(),
-      name: new FormControl(),
-      gender: new FormControl(),
+      id: '',
+      name: '',
+      gender: '',
     }),
   });
-  constructor(private signatureService: SignatureService) {}
-  initForm(form: FormGroup, user: Student | Employee): void {
-    // this.form.get('formType').setValue(user.userType)
-    // this.form.get('id').setValue(user.id);
-    // this.form.get('name').setValue(`${user.firstName} ${user.lastName}`);
-    form.get('id').setValue(user.id);
-    form.get('name').setValue(`${user.firstName} ${user.lastName}`);
-    form.get('formType').setValue(user.userType);
+  constructor(
+    private mainFormHttpReqService: MainFormHttpReqService,
+  ) {
+  }
+
+  setupForm(user : Student | Employee): void {
+    console.log('SETUP');
+    this.form.get('formType').setValue(user.userType);
+    this.form.get('id').setValue(user.id);
+    this.form.get('name').setValue(`${user.firstName} ${user.lastName}`);
     if (user.userType === 'Student') {
       const student = user as Student;
-      // this.form.get('institute').setValue(student.institute)
-      form.get('institute').setValue(student.institute);
+      this.form.get('institute').setValue(student.institute);
     } else if (user.userType === 'Employee') {
       const employee = user as Employee;
-      // this.form.get('phoneNum').setValue(employee.phoneNum)
-      form.get('phoneNum').setValue(employee.phoneNum);
+      this.form.get('phoneNum').setValue(employee.phoneNum);
     }
   }
-  
-  sendForm(form : FormGroup) : void{
-    console.log(form.value)
+  // initForm(form: FormGroup, user: Student | Employee): void {
+  //   this.form.get('formType').setValue(user.userType);
+  //   this.form.get('id').setValue(user.id);
+  //   this.form.get('name').setValue(`${user.firstName} ${user.lastName}`);
+  //   form.get('id').setValue(user.id);
+  //   form.get('name').setValue(`${user.firstName} ${user.lastName}`);
+  //   form.get('formType').setValue(user.userType);
+  //   if (user.userType === 'Student') {
+  //     const student = user as Student;
+  //     this.form.get('institute').setValue(student.institute);
+  //     form.get('institute').setValue(student.institute);
+  //   } else if (user.userType === 'Employee') {
+  //     const employee = user as Employee;
+  //     this.form.get('phoneNum').setValue(employee.phoneNum);
+  //     form.get('phoneNum').setValue(employee.phoneNum);
+  //   }
+  // }
+  // initForm2(user: Student | Employee): void {
+  //   this.form.get('formType').setValue(user.userType);
+  //   this.form.get('id').setValue(user.id);
+  //   this.form.get('name').setValue(`${user.firstName} ${user.lastName}`);
+  // }
+  // initFormStudent(student: Student): void {
+  //   this.form.reset();
+  //   this.form.get('institute').setValue(student.institute);
+  // }
+  // initFormEmployee(employee: Employee): void {
+  //   this.form.reset();
+  //   this.form.get('phoneNum').setValue(employee.phoneNum);
+  // }
+  public prepareFormForSubmit(): void {
+    const formReady = this.prepareForm();
+    console.log(formReady.value);
+    // this.mainFormHttpReqService.sendFormToServer(form);
+  }
+  prepareForm(): FormGroup {
+    return this.form;
   }
 }

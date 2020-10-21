@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Employee } from '../../../models/employee';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MainFormService } from '../../services/main-form.service';
@@ -9,7 +9,7 @@ import { MainFormService } from '../../services/main-form.service';
   styleUrls: ['./form-employee.component.scss'],
 })
 export class FormEmployeeComponent implements OnInit {
-  @Input() employee: Employee;
+  public employee: Employee;
 
   public employeeForm = new FormGroup({
     formType: new FormControl(),
@@ -26,12 +26,12 @@ export class FormEmployeeComponent implements OnInit {
   constructor(private mainFormService: MainFormService) {}
 
   ngOnInit(): void {
-    this.mainFormService.initForm(this.employeeForm, this.employee);
+    // this.mainFormService.initForm(this.employeeForm, this.employee);
   }
   saveSig(sig: string): void {
     this.employeeForm.get('signature').setValue(sig);
   }
   submitEmployeeForm(): void {
-    this.mainFormService.sendForm(this.employeeForm);
+    this.mainFormService.prepareFormForSubmit();
   }
 }
