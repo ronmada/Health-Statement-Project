@@ -3,6 +3,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Student } from '../../models/student';
 import { Employee } from '../../models/employee';
 import { MainFormHttpReqService } from './main-form-http-req.service';
+// import { HttpParams } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -24,12 +26,9 @@ export class MainFormService {
       gender: '',
     }),
   });
-  constructor(
-    private mainFormHttpReqService: MainFormHttpReqService,
-  ) {
-  }
+  constructor(private mainFormHttpReqService: MainFormHttpReqService) {}
 
-  setupForm(user : Student | Employee): void {
+  setupForm(user: Student | Employee): void {
     console.log('SETUP');
     this.form.get('formType').setValue(user.userType);
     this.form.get('id').setValue(user.id);
@@ -37,10 +36,16 @@ export class MainFormService {
     if (user.userType === 'Student') {
       const student = user as Student;
       this.form.get('institute').setValue(student.institute);
+      this.form.removeControl('phoneNum');
     } else if (user.userType === 'Employee') {
       const employee = user as Employee;
       this.form.get('phoneNum').setValue(employee.phoneNum);
+      this.form.removeControl('guardian');
     }
+  }
+  public prepareFormForSubmit(): void {
+    // const formParams = this.form.value as HttpParams;
+    this.mainFormHttpReqService.sendFormToServer(this.form.value);
   }
   // initForm(form: FormGroup, user: Student | Employee): void {
   //   this.form.get('formType').setValue(user.userType);
@@ -72,12 +77,4 @@ export class MainFormService {
   //   this.form.reset();
   //   this.form.get('phoneNum').setValue(employee.phoneNum);
   // }
-  public prepareFormForSubmit(): void {
-    const formReady = this.prepareForm();
-    console.log(formReady.value);
-    // this.mainFormHttpReqService.sendFormToServer(form);
-  }
-  prepareForm(): FormGroup {
-    return this.form;
-  }
 }

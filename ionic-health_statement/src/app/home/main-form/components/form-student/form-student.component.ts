@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-// import { FormGroup, FormControl } from '@angular/forms';
 import { Student } from '../../../models/student';
 import { MainFormService } from '../../services/main-form.service';
 import { UserService } from '../../../services/user.service';
@@ -22,14 +21,12 @@ export class FormStudentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.mainFormService.initForm(this.studentForm, this.student);
-    // this.mainFormService.initForm2(this.student);
-    // this.mainFormService.initFormStudent(this.student);
+    //
   }
-  saveSig(sig: string): void {
+  public saveSig(sig: string): void {
     this.studentForm.get('signature').setValue(sig);
   }
-  submitStudentForm(): void {
+  public submitStudentForm(): void {
     this.mainFormService.prepareFormForSubmit();
   }
 }

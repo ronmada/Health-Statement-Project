@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../../../models/employee';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { MainFormService } from '../../services/main-form.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-form-employee',
@@ -10,23 +11,18 @@ import { MainFormService } from '../../services/main-form.service';
 })
 export class FormEmployeeComponent implements OnInit {
   public employee: Employee;
+  public employeeForm: FormGroup;
 
-  public employeeForm = new FormGroup({
-    formType: new FormControl(),
-    id: new FormControl({ value: '', disabled: true }),
-    name: new FormControl({ value: '', disabled: true }),
-    signature: new FormControl(),
-    institute: new FormControl({
-      id: '',
-      name: '',
-    }),
-    phoneNum: new FormControl(),
-  });
-
-  constructor(private mainFormService: MainFormService) {}
+  constructor(
+    private mainFormService: MainFormService,
+    private userService: UserService
+  ) {
+    this.employeeForm = this.mainFormService.form;
+    this.employee = this.userService.user__ as Employee;
+  }
 
   ngOnInit(): void {
-    // this.mainFormService.initForm(this.employeeForm, this.employee);
+    //
   }
   saveSig(sig: string): void {
     this.employeeForm.get('signature').setValue(sig);
