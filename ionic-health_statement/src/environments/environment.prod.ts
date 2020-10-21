@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  URL: 'https://evening-caverns-06921.herokuapp.com',
+  URL: 'https://health-statement-api.herokuapp.com',
 };
