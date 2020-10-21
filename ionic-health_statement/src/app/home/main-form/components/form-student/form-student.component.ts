@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Student } from '../../../models/student';
-import { MainFormService } from '../../main-form.service';
+import { MainFormService } from '../../services/main-form.service';
 @Component({
   selector: 'app-form-student',
   templateUrl: './form-student.component.html',

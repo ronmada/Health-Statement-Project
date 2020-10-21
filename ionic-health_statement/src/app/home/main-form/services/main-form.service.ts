@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Student } from '../models/student';
-import { Employee } from '../models/employee';
+import { Student } from '../../models/student';
+import { Employee } from '../../models/employee';
 
 @Injectable({
   providedIn: 'root',

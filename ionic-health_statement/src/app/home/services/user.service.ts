@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserHttpReqService } from './user-http-req.service';
-import { Employee } from './models/employee';
-import { Student } from './models/student';
+import { Employee } from '../models/employee';
+import { Student } from '.././models/student';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 @Injectable({

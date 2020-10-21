@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { SignatureComponent } from '../signature/signature.component';
-import { SignatureService } from '../../signature.service';
+import { SignatureService } from '../../services/signature.service';
 
 @Component({
   selector: 'app-sig-pop',

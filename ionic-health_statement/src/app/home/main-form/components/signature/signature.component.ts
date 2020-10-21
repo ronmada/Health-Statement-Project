@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { switchMap, takeUntil, pairwise } from 'rxjs/operators';
-import { SignatureService } from '../../signature.service';
+import { SignatureService } from '../../services/signature.service';
 import { PopoverController } from '@ionic/angular';
 @Component({
   selector: 'app-signature',

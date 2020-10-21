@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Employee } from '../../../models/employee';
 import { FormGroup, FormControl } from '@angular/forms';
-import { MainFormService } from '../../main-form.service';
+import { MainFormService } from '../../services/main-form.service';
 
 @Component({
   selector: 'app-form-employee',
