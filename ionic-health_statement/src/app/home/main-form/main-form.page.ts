@@ -6,9 +6,9 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./main-form.page.scss'],
 })
 export class MainFormPage {
-  public user = this.userService.user__;
-  constructor(private userService: UserService) {}
+  constructor(public userService: UserService) {}
+
   backButton(): void {
-    this.user = null;
+    this.userService.setUser(null);
   }
 }

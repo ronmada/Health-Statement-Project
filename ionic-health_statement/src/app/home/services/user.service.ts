@@ -10,7 +10,7 @@ import { MainFormService } from '../../home/main-form/services/main-form.service
 })
 export class UserService {
   public isOkay = false;
-  public user__: Student | Employee;
+  private user: Student | Employee;
 
   constructor(
     private userHttpReqService: UserHttpReqService,
@@ -22,11 +22,17 @@ export class UserService {
       tap((user) => {
         if (user === null) this.isOkay = false;
         else {
-          this.user__ = user;
-          this.mainFormService.setupForm(this.user__);
+          this.setUser(user);
+          this.mainFormService.setupForm(this.user);
           this.isOkay = true;
         }
       })
     );
+  }
+  getUser(): Student | Employee {
+    return this.user;
+  }
+  setUser(user: Student | Employee | null): void {
+    this.user = user;
   }
 }

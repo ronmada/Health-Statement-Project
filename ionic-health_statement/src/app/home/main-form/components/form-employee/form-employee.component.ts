@@ -18,7 +18,7 @@ export class FormEmployeeComponent implements OnInit {
     private userService: UserService
   ) {
     this.employeeForm = this.mainFormService.getForm();
-    this.employee = this.userService.user__ as Employee;
+    this.employee = this.userService.getUser() as Employee;
   }
 
   ngOnInit(): void {

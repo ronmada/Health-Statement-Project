@@ -1,20 +1,28 @@
 import { Injectable } from '@angular/core';
-
+import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class SignatureService {
-  private signature: string = null;
+  private signatureSource = new BehaviorSubject<string>(null);
+  private signature = this.signatureSource.asObservable();
+  private checkFlagSource = new BehaviorSubject<boolean>(false);
+  private checkFlag = this.checkFlagSource.asObservable();
 
-  public saveSignature(canvasImg: string): void {
-    this.signature = canvasImg;
+  public setSignature(canvasImg: string): void {
+    this.signatureSource.next(canvasImg);
   }
-
-  public getSignature(): string {
+  public getSig(): Observable<string> {
     return this.signature;
   }
+  public clearSignature(): void {
+    this.signatureSource.next(null);
+  }
 
-  public clearSig(): void {
-    this.signature = null;
+  public getCheckFlag(): Observable<boolean> {
+    return this.checkFlag;
+  }
+  public setCheckFlag(checkFlag: boolean): void {
+    this.checkFlagSource.next(checkFlag);
   }
 }

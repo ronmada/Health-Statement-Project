@@ -34,7 +34,7 @@ export class SigPopComponent {
       if (res.data != undefined) {
         this.buttonColor = 'success';
         this.savedSigEvent.emit(res.data);
-        this.signatureService.saveSignature(res.data);
+        // this.signatureService.saveSignature(res.data);
       }
     });
     return await popover.present();

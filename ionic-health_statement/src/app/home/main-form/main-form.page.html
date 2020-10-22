@@ -12,6 +12,10 @@
 </ion-header>
 
 <ion-content>
-  <app-form-student *ngIf="user.userType==='Student'"></app-form-student>
-  <app-form-employee *ngIf="user.userType==='Employee'"></app-form-employee>
+  <app-form-student
+    *ngIf="userService.getUser().userType==='Student'"
+  ></app-form-student>
+  <app-form-employee
+    *ngIf="userService.getUser().userType==='Employee'"
+  ></app-form-employee>
 </ion-content>

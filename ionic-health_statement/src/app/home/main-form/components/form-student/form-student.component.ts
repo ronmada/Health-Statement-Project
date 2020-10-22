@@ -4,6 +4,7 @@ import { Student } from '../../../models/student';
 import { MainFormService } from '../../services/main-form.service';
 import { UserService } from '../../../services/user.service';
 import { AlertService } from '../../services/alert.service';
+import { PopoverService } from '../../services/popover.service';
 @Component({
   selector: 'app-form-student',
   templateUrl: './form-student.component.html',
@@ -11,15 +12,15 @@ import { AlertService } from '../../services/alert.service';
 })
 export class FormStudentComponent implements OnInit {
   public student: Student;
-  private formOK: boolean;
   public studentForm: FormGroup;
   constructor(
     private mainFormService: MainFormService,
     private userService: UserService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    public popoverService: PopoverService
   ) {
     this.studentForm = this.mainFormService.getForm();
-    this.student = this.userService.user__ as Student;
+    this.student = this.userService.getUser() as Student;
   }
   get guardian(): string {
     return this.studentForm.get('guardian').value.id;
@@ -28,16 +29,16 @@ export class FormStudentComponent implements OnInit {
     return this.studentForm.get('institute').value.name;
   }
   ngOnInit(): void {
-    this.formOK = false;
+    //
   }
-  public saveSig(sig: string): void {
-    this.studentForm.get('signature').setValue(sig);
-  }
+
   public submitForm(): void {
     this.mainFormService.prepareFormForSubmit();
-    this.alertService.formSubmittedAlert()
-    // console.log(this.formOK);
-    // this.formOK = true;
-    // console.log(this.formOK);
+    this.alertService.formSubmittedAlert();
+  }
+  public presentPopover($event: Event): void {
+    this.popoverService.signaturePopOver($event).then(() => {
+      //
+    });
   }
 }

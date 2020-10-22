@@ -5,38 +5,32 @@ import { AlertController } from '@ionic/angular';
   providedIn: 'root',
 })
 export class AlertService {
-  alert: HTMLIonAlertElement;
+  // alert: HTMLIonAlertElement;
   constructor(private alertCtrl: AlertController) {}
 
   async formSubmittedAlert(): Promise<void> {
-    this.alert = await this.alertCtrl.create({
+    const alert = await this.alertCtrl.create({
       header: 'הטופס נשלח בהצלחה',
       message: 'להוריד את הטופס PDF?',
+      backdropDismiss: false,
       buttons: [
         {
           text: 'לא',
           role: 'cancel',
+          handler: () => {
+            console.log('click on no button or backdrop');
+          },
         },
         {
           text: 'כן',
           handler: () => {
-            this.alert.dismiss('hi');
+            console.log('clicked on yes button');
+            this.downloadPDFForm();
           },
         },
       ],
     });
-
-    this.alert.onDidDismiss().then((res) => {
-      // if (res.data != undefined) {
-      //   this.buttonColor = 'success';
-      //   this.savedSigEvent.emit(res.data);
-      //   this.signatureService.saveSignature(res.data);
-      // }
-      this.downloadPDFForm()
-      console.log('hello');
-      console.log(res.data);
-    });
-     await this.alert.present();
+    return await alert.present();
   }
   downloadPDFForm(): void {
     console.log('lol');

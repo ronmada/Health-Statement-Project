@@ -19,11 +19,16 @@ export class SignatureComponent implements AfterViewInit {
   @Input() public width: number;
   @Input() public height: number;
   private cx: CanvasRenderingContext2D;
-  public checkFlag = false;
+  // public checkFlag = false;
+  public checkFlag: boolean;
   constructor(
     private signatureService: SignatureService,
     private popoverController: PopoverController
-  ) {}
+  ) {
+    this.signatureService.getCheckFlag().subscribe((checkFlag) => {
+      this.checkFlag = checkFlag;
+    });
+  }
 
   public ngAfterViewInit(): void {
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
@@ -44,8 +49,11 @@ export class SignatureComponent implements AfterViewInit {
     this.popoverController.dismiss(canvasImg);
   }
   public clearSig(): void {
-    this.checkFlag = false;
-    this.signatureService.clearSig();
+    this.signatureService.setCheckFlag(false)
+    // this.checkFlag = false;
+    // this.signatureService.clearSig();
+    this.signatureService.clearSignature();
+
     this.cx.clearRect(
       0,
       0,
@@ -54,20 +62,25 @@ export class SignatureComponent implements AfterViewInit {
     );
   }
   public cancelSig(): void {
+    
     this.popoverController.dismiss(null);
   }
 
   private drawSavedSignatureOnCanvas(): void {
-    const imageSrc = this.signatureService.getSignature();
-    if (imageSrc !== null) {
-      this.checkFlag = true;
-      const ctx = this.cx;
-      const image = new Image();
-      image.src = imageSrc;
-      image.onload = () => {
-        ctx.drawImage(image, 0, 0);
-      };
-    }
+    // const imageSrc = this.signatureService.getSignature();
+    this.signatureService.getSig().subscribe((sig) => {
+      if (sig !== null) {
+        // this.checkFlag = true;
+        this.signatureService.setCheckFlag(true)
+
+        const ctx = this.cx;
+        const image = new Image();
+        image.src = sig;
+        image.onload = () => {
+          ctx.drawImage(image, 0, 0);
+        };
+      }
+    });
   }
 
   private captureEvents(canvasEl: HTMLCanvasElement) {
@@ -155,6 +168,8 @@ export class SignatureComponent implements AfterViewInit {
       this.cx.lineTo(currentPos.x, currentPos.y);
       this.cx.stroke();
     }
-    this.checkFlag = true;
+    // this.checkFlag = true;
+    this.signatureService.setCheckFlag(true)
+
   }
 }

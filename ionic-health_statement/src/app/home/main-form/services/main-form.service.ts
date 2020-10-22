@@ -15,25 +15,8 @@ export class MainFormService {
     private signatureService: SignatureService
   ) {}
 
-  setupForm(user: Student | Employee): void {
-    // const form = new FormGroup({
-    //   formType: new FormControl(user.userType),
-    //   id: new FormControl(user.id),
-    //   name: new FormControl(`${user.firstName} ${user.lastName}`),
-    //   signature: new FormControl(),
-    //   institute: new FormControl({
-    //     id: "",
-    //     name: "",
-    //   }),
-    //   phoneNum: new FormControl(),
-    //   formDate: new FormControl(this.getFormmatedDate(new Date())),
-    //   guardian: new FormControl({
-    //     id: "",
-    //     name: "",
-    //     gender: "",
-    //   }),
-    // });
-    this.signatureService.clearSig();
+  public setupForm(user: Student | Employee): void {
+    this.signatureService.clearSignature();
     const form = new FormGroup({
       formType: new FormControl(user.userType),
       id: new FormControl(user.id),
@@ -51,6 +34,9 @@ export class MainFormService {
         gender: '',
       }),
     });
+    this.signatureService.getSig().subscribe((sig) => {
+      form.get('signature').setValue(sig);
+    });
     if (user.userType === 'Student') {
       const student = user as Student;
       form.get('institute').setValue(student.institute);
@@ -62,7 +48,7 @@ export class MainFormService {
     }
     this.setForm(form);
   }
-  setForm(form: FormGroup): void {
+  private setForm(form: FormGroup): void {
     this.form = form;
   }
 
