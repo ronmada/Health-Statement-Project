@@ -53,6 +53,9 @@ export class SignatureComponent implements AfterViewInit {
       this.canvas.nativeElement.height
     );
   }
+  public cancelSig(): void {
+    this.popoverController.dismiss(null);
+  }
 
   private drawSavedSignatureOnCanvas(): void {
     const imageSrc = this.signatureService.getSignature();

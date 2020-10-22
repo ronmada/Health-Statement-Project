@@ -17,25 +17,23 @@ export class SigPopComponent {
   ) {
     this.buttonColor = 'warning';
   }
-  saveSig(value: string): void {
-    this.savedSigEvent.emit(value);
-  }
-  public async presentPopover(ev: Event): Promise<void> {
+
+  public async presentPopover($event: Event): Promise<void> {
     const popover = await this.popoverController.create({
       component: SignatureComponent,
       cssClass: 'my-custom-class',
-      event: ev,
+      event: $event,
       translucent: true,
-      backdropDismiss: false,
+      // backdropDismiss: false,
       componentProps: {
         width: 250,
         height: 204,
       },
     });
     popover.onDidDismiss().then((res) => {
-      if (res.data !== undefined) {
+      if (res.data != undefined) {
         this.buttonColor = 'success';
-        this.saveSig(res.data)
+        this.savedSigEvent.emit(res.data);
         this.signatureService.saveSignature(res.data);
       }
     });

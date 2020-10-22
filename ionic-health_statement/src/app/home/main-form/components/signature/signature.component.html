@@ -1,6 +1,8 @@
 <ion-content>
+  <div class="flex-msg">חתום כאן</div>
   <canvas #canvas></canvas>
   <div class="flex-class">
+    <ion-button color="warning" (click)="cancelSig()"> בטל </ion-button>
     <ion-button color="danger" [disabled]="!checkFlag" (click)="clearSig()">
       נקה
     </ion-button>

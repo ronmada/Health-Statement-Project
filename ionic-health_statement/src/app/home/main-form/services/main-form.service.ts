@@ -1,15 +1,19 @@
-import { Injectable } from "@angular/core";
-import { FormGroup, FormControl } from "@angular/forms";
-import { Student } from "../../models/student";
-import { Employee } from "../../models/employee";
-import { MainFormHttpReqService } from "./main-form-http-req.service";
+import { Injectable } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Student } from '../../models/student';
+import { Employee } from '../../models/employee';
+import { MainFormHttpReqService } from './main-form-http-req.service';
+import { SignatureService } from '../../main-form/services/signature.service';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class MainFormService {
   private form: FormGroup;
-  constructor(private mainFormHttpReqService: MainFormHttpReqService) {}
+  constructor(
+    private mainFormHttpReqService: MainFormHttpReqService,
+    private signatureService: SignatureService
+  ) {}
 
   setupForm(user: Student | Employee): void {
     // const form = new FormGroup({
@@ -29,6 +33,7 @@ export class MainFormService {
     //     gender: "",
     //   }),
     // });
+    this.signatureService.clearSig();
     const form = new FormGroup({
       formType: new FormControl(user.userType),
       id: new FormControl(user.id),
@@ -46,14 +51,14 @@ export class MainFormService {
         gender: '',
       }),
     });
-    if (user.userType === "Student") {
+    if (user.userType === 'Student') {
       const student = user as Student;
-      form.get("institute").setValue(student.institute);
-      form.removeControl("phoneNum");
-    } else if (user.userType === "Employee") {
+      form.get('institute').setValue(student.institute);
+      form.removeControl('phoneNum');
+    } else if (user.userType === 'Employee') {
       const employee = user as Employee;
-      form.get("phoneNum").setValue(employee.phoneNum);
-      form.removeControl("guardian");
+      form.get('phoneNum').setValue(employee.phoneNum);
+      form.removeControl('guardian');
     }
     this.setForm(form);
   }

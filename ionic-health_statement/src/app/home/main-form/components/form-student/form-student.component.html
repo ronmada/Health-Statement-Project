@@ -1,4 +1,4 @@
-<form [formGroup]="studentForm" (ngSubmit)="submitStudentForm()">
+<form [formGroup]="studentForm" (ngSubmit)="submitForm()">
   <ion-grid>
     <ion-row>
       <ion-col>
@@ -62,7 +62,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button type="submit">שלח</ion-button>
+        <ion-button expand="block" type="submit">שלח טופס</ion-button>
       </ion-col>
     </ion-row>
     <ion-col>

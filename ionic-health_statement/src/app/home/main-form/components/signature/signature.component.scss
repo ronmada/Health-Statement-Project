@@ -3,8 +3,13 @@ canvas {
 }
 .flex-class {
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
+  justify-content: space-between;
 }
 ion-content {
   --overflow: hidden;
+}
+.flex-msg {
+  display: flex;
+  justify-content: center;
 }

@@ -1,14 +1,14 @@
-import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl } from "@angular/forms";
-import { UserService } from "./services/user.service";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { UserService } from './services/user.service';
+import { Router } from '@angular/router';
 @Component({
-  selector: "app-home",
-  templateUrl: "home.page.html",
-  styleUrls: ["home.page.scss"],
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  public errorMsg = { msg: "לא נמצא", show: false };
+  public errorMsg = { msg: 'לא נמצא', show: false };
   public vali = {
     minlength: 7,
     maxlength: 7,
@@ -20,10 +20,10 @@ export class HomePage implements OnInit {
   });
 
   get id(): string {
-    if (this.form.get("id").value === null) {
-      return "";
+    if (this.form.get('id').value === null) {
+      return '';
     }
-    return String(this.form.get("id").value);
+    return String(this.form.get('id').value);
   }
   constructor(private userService: UserService, private router: Router) {}
 
@@ -44,10 +44,10 @@ export class HomePage implements OnInit {
   }
 
   private listenToId(): void {
-    this.form.get("id").valueChanges.subscribe(() => {
+    this.form.get('id').valueChanges.subscribe(() => {
       const l = this.id;
       let letterFound: boolean;
-      l.split(",").forEach((v) => {
+      l.split(',').forEach((v) => {
         letterFound = !!v.match(this.vali.pattern);
       });
       this.submitButtonDisabled = !(

@@ -6,8 +6,8 @@ import { MainFormPage } from './main-form.page';
 const routes: Routes = [
   {
     path: '',
-    component: MainFormPage
-  }
+    component: MainFormPage,
+  },
 ];
 
 @NgModule({
