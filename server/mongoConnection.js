@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 module.exports = async () => {
   try {
     console.log('Trying to connect to DB');
