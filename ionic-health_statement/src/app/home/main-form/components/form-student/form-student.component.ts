@@ -13,6 +13,7 @@ import { PopoverService } from '../../services/popover.service';
 export class FormStudentComponent implements OnInit {
   public student: Student;
   public studentForm: FormGroup;
+  public submitBoolean: boolean;
   constructor(
     private mainFormService: MainFormService,
     private userService: UserService,
@@ -28,8 +29,15 @@ export class FormStudentComponent implements OnInit {
   get institute(): string {
     return this.studentForm.get('institute').value.name;
   }
+  get signature(): string {
+    return this.studentForm.get('signature').value;
+  }
   ngOnInit(): void {
-    //
+    this.submitBoolean = true;
+    this.studentForm.valueChanges.subscribe(() => {
+      console.log('form change');
+      if (this.guardian && this.signature) this.submitBoolean = false;
+    });
   }
 
   public submitForm(): void {

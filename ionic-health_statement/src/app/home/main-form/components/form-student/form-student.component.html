@@ -72,7 +72,13 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button class="ion-margin-top" expand="block" type="submit">שלח טופס</ion-button>
+        <ion-button
+          class="ion-margin-top"
+          expand="block"
+          type="submit"
+          [disabled]="submitBoolean"
+          >שלח טופס</ion-button
+        >
       </ion-col>
     </ion-row>
     <ion-col>
