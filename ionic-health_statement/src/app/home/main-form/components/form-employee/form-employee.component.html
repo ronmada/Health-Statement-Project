@@ -43,7 +43,12 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <app-sig-pop (savedSigEvent)="saveSig($event)"></app-sig-pop>
+        <ion-button
+          [color]="popoverService.getButtonColor()"
+          expand="block"
+          (click)="presentPopover($event)"
+          >לחץ לחתימה</ion-button
+        >
       </ion-col>
     </ion-row>
     <ion-row>
