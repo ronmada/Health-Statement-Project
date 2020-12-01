@@ -16,4 +16,8 @@ export class MainFormHttpReqService {
       .post(`${this.URL}/formCreator`, form)
       .subscribe((d) => console.log(d));
   }
+
+  public sendPDFRequestToServer(formId : string): void {
+    this.http.post(`${this.URL}/pdfCreator`,formId)
+  }
 }
