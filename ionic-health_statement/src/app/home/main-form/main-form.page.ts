@@ -9,6 +9,7 @@ export class MainFormPage {
   constructor(public userService: UserService) {}
 
   backButton(): void {
-    this.userService.setUser(null);
+    this.userService.resetUserForm()
+    // this.userService.setUser(null);
   }
 }

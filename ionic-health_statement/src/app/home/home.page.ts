@@ -1,23 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { Router } from '@angular/router';
+import { NotFoundAlertService } from '../home/services/not-found-alert.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  public errorMsg = { msg: 'לא נמצא', show: false };
+  public form: FormGroup;
+  public submitButtonDisabled: boolean;
   public vali = {
     minlength: 7,
     maxlength: 7,
     pattern: /[^0-9]+/,
   };
-  public submitButtonDisabled = false;
-  public form = new FormGroup({
-    id: new FormControl(7147291),
-  });
+  constructor(
+    private notFoundAlertService: NotFoundAlertService,
+    private userService: UserService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.submitButtonDisabled = false;
+    this.form = this.userService.getHomePageForm();
+    this.listenToId();
+    console.log('okay');
+  }
 
   get id(): string {
     if (this.form.get('id').value === null) {
@@ -25,21 +36,13 @@ export class HomePage implements OnInit {
     }
     return String(this.form.get('id').value);
   }
-  constructor(private userService: UserService, private router: Router) {}
-
-  ngOnInit(): void {
-    this.listenToId();
-  }
 
   public submitId(): void {
     this.userService.searchUser(this.id).subscribe((elem) => {
       if (this.userService.isOkay) {
-        this.errorMsg.show = false;
         this.router.navigate([`/home/mainform`]);
         console.log(elem);
-      } else {
-        this.errorMsg.show = true;
-      }
+      } else this.notFoundAlertService.idNotFound();
     });
   }
 
